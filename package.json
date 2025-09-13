@@ -1,0 +1,73 @@
+{
+  "name": "guidgenie",
+  "displayName": "guid genie",
+  "description": "GUID generator (UUID v4)",
+  "icon": "assets/guidgenie.png",
+  "version": "1.0.4",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "guidgenie.generateGuid",
+        "title": "GUID generator"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "guidgenie.generateGuid",
+        "key": "ctrl+d",
+        "mac": "cmd+d",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "guidgenie.generateGuid",
+          "group": "1_modification",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GUID Genie",
+      "properties": {
+        "guidgenie.uppercase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Generate GUIDs in uppercase format"
+        },
+        "guidgenie.includeBraces": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include curly braces around GUIDs"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node ./test/quicktest.js && node ./test/runTest.js",
+    "test:quick": "node ./test/quicktest.js",
+    "test:integration": "node ./test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "18.x",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.6.0",
+    "mocha": "^11.7.2",
+    "glob": "^11.0.3"
+  },
+  "publisher": "falsneg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/falsneg/guidgenie"
+  }
+}
